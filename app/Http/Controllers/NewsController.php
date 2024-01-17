@@ -10,7 +10,7 @@ class NewsController extends Controller
     // All news
     public function index() {
         return view('news.index', [
-            'news' => News::orderBy('created_at','desc')->filter(request(['tag', 'search']))->paginate(2)
+            'news' => News::orderBy('created_at','desc')->filter(request(['tag', 'search']))->paginate(6)
         ]);
     }
 

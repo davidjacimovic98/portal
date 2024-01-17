@@ -4,8 +4,8 @@
             <p>There are no any news.</p>
         @endif
 
-        @foreach($news as $news)
-            <x-news-card :news="$news" />
+        @foreach($news as $n)
+            <x-news-card :news="$n" />
         @endforeach
     </div>
 
