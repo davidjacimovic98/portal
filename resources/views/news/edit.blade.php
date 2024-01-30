@@ -6,7 +6,7 @@
             </h2>
         </header>
 
-        <form method="POST" action="/news/{{$news->id}}" enctype="multipart/form-data">
+        <form method="POST" action="{{route('news.edit')}}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-6">

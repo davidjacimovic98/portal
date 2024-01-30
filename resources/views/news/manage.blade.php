@@ -35,7 +35,7 @@
                     <td
                         class="px-4 py-8 border-t border-b border-gray-300 text-lg"
                     >
-                    <form method="POST" action="/news/{{$news->id}}">
+                    <form method="POST" action="{{route('news.destroy')}}">
                         @csrf
                         @method('DELETE')
                         <button class="text-red-500"><i class="fa-solid fa-trash"></i> Delete </button>

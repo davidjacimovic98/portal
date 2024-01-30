@@ -6,7 +6,7 @@
             </h2>
         </header>
 
-        <form method="POST" action="/news" enctype="multipart/form-data">
+        <form method="POST" action="{{route('news.create')}}" enctype="multipart/form-data">
             @csrf
             <div class="mb-6">
                 <label for="title" class="inline-block text-lg mb-2">News title</label>
