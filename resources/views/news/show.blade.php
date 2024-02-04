@@ -23,6 +23,28 @@
                         <div class="text-lg space-y-6">
                             {{$news->description}}
                         </div>
+                    </div>  
+                </div>
+                {{-- comments --}}
+                <div class="mt-9">
+                    <h3 class="text-xl font-bold mb-4">
+                        Comments
+                    </h3>
+                    <div class="text-lg space-y-6">
+                        @auth
+                        <form method="post" action="{{ route('comments.store') }}">
+                            @csrf
+                            <input type="hidden" name="news_id" value="{{ $news->id }}">
+                            <textarea class="w-full" name="body" placeholder="Add your comment here" required></textarea>
+                            <br>
+                            <button class="text-sm text-white rounded py-2 px-4 bg-gray-400 hover:bg-black" type="submit">Submit comment</button>
+                        </form>
+                        @else
+                            <p>Please login to add a comment.</p>
+                        @endauth
+                        @foreach ($news->comments as $comment)
+                            <x-comment-card :comment="$comment" />
+                        @endforeach
                     </div>
                 </div>
             </div>

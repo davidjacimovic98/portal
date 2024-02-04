@@ -92,4 +92,34 @@ class NewsController extends Controller
             'news' => auth()->user()->news()->get()
         ]);
     }
+
+    // Trashed news
+    public function trash() {
+        return view('news.trash', [
+            'trashed_news' => auth()->user()->news()->onlyTrashed()->orderBy('deleted_at', 'desc')->paginate(6)
+        ]);
+    }
+
+    // Restore trashed news
+    public function restore(News $news) {
+        // Make sure that logged in user is owner of news
+        if($news->user_id != auth()->id()) {
+            abort(403, 'Unauthorized action!');
+        }
+
+        $news->restore();
+
+        return redirect()->route('news.trash')->with('message', 'News restored successfully.');
+    }
+
+    public function forceDelete(News $news) {
+        // Make sure that logged in user is owner of news
+        if($news->user_id != auth()->id()) {
+            abort(403, 'Unauthorized action!');
+        }
+
+        $news->forceDelete();
+
+        return redirect()->route('news.trash')->with('message', 'News restored successfully.');
+    }
 } 

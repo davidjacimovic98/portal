@@ -8,7 +8,7 @@
         <p class="mb-4">Log into your account to post news</p>
     </header>
 
-    <form method="POST" action="{{route('users/authenticate')}}">
+    <form method="POST" action="{{route('users.authenticate')}}">
         @csrf
         <div class="mb-6">
             <label for="email" class="inline-block text-lg mb-2"
@@ -56,7 +56,7 @@
         <div class="mt-8">
             <p>
                 Don't have an account?
-                <a href="/register"
+                <a href="{{route('users.create')}}"
                     >Register</a
                 >
             </p>

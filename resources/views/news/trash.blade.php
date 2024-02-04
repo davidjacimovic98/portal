@@ -4,15 +4,14 @@
             <h1
                 class="text-3xl text-center font-bold my-6 uppercase"
             >
-                Manage news
+                Trashed news
             </h1>
-            <a href="{{route('news.trash')}}">-> Click here to see trashed news</a>
         </header>
 
         <table class="w-full table-auto rounded-sm">
             <tbody>
-                @unless($news->isEmpty())
-                @foreach($news as $n)
+                @unless($trashed_news->isEmpty())
+                @foreach($trashed_news as $n)
                 <tr class="border-gray-300">
                     <td
                         class="px-4 py-8 border-t border-b border-gray-300 text-lg"
@@ -24,22 +23,20 @@
                     <td
                         class="px-4 py-8 border-t border-b border-gray-300 text-lg"
                     >
-                        <a
-                            href="/news/{{$n->id}}/edit"
-                            class="text-blue-400 px-6 py-2 rounded-xl"
-                            ><i
-                                class="fa-solid fa-pen-to-square"
-                            ></i>
-                            Edit</a
-                        >
+                    <form method="POST" action="{{ route('news.restore', $n) }}">
+                        @csrf
+                        <button type="submit" class="text-blue-400 px-6 py-2 rounded-xl">
+                            <i class="fa-solid fa-pen-to-square"></i> Restore
+                        </button>
+                    </form>
                     </td>
                     <td
                         class="px-4 py-8 border-t border-b border-gray-300 text-lg"
                     >
-                    <form method="POST" action="{{route('news.destroy', $n)}}">
+                    <form method="POST" action="{{route('news.forceDelete', $n)}}">
                         @csrf
                         @method('DELETE')
-                        <button class="text-red-500"><i class="fa-solid fa-trash"></i> Delete </button>
+                        <button class="text-red-500"><i class="fa-solid fa-trash"></i> Force delete </button>
                         </form>
                     </td>
                 </tr>
