@@ -23,19 +23,31 @@
             </div>
 
             <div class="mb-6">
-                <label for="tags" class="inline-block text-lg mb-2">
-                    Tags (Comma Separated)
+                <label for="category_id" class="inline-block text-lg mb-2">
+                    Category
                 </label>
-                <input
-                    type="text"
-                    class="border border-gray-200 rounded p-2 w-full"
-                    name="tags"
-                    placeholder="Example: Economy, Oil, War, etc"
-                    value="{{old('tags')}}"
-                />
-                @error('tags')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
+                <div>
+                    @foreach($categories as $c)
+                        <label class="inline-block mr-3">
+                            <input type="radio" name="category_id" value="{{ $c->id }}">
+                            {{ $c->name }}
+                        </label>
+                    @endforeach
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <label for="tags" class="inline-block text-lg mb-2">
+                    Tags
+                </label>
+                <div>
+                    @foreach($tags as $tag)
+                        <label class="inline-block mr-3">
+                            <input type="checkbox" name="existing_tags[]" value="{{ $tag->id }}">
+                            {{ $tag->name }}
+                        </label>
+                    @endforeach
+                </div>
             </div>
 
             <div class="mb-6">

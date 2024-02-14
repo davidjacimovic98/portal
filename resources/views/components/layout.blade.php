@@ -12,9 +12,12 @@
 </head>
 <body class="mb-48">
     <nav class="flex justify-between items-center mb-4 px-10 bg-gray-400">
-        <a href="/"
-            ><img class="w-24" src="{{asset('images/portal-logo.png')}}" alt="logo"
-        /></a>
+        <div>
+            <a href="/"
+                ><img class="w-24" src="{{asset('images/portal-logo.png')}}" alt="logo"
+            /></a>
+            <a href="{{route('news.categories')}}">Categories</a>
+        </div>
         <ul class="flex space-x-6 mr-6 text-lg">
             @auth
             <li>

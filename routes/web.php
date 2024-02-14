@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,24 @@ use App\Http\Controllers\UserController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+// Categories landing page
+Route::get('/news/categories', [NewsController::class, 'categories'])->name('news.categories');
+
+// Restore trashed category
+Route::post('/categories/{category}/restore', [CategoryController::class, 'restore'])->name('categories.restore');
+
+// Category soft delete
+Route::delete('/categories/{category}', [CategoryController::class, 'softDelete'])->name('categories.softDelete');
+
+// Soft deleted categories landing page
+Route::get('/categories/trashed', [CategoryController::class, 'trashed'])->name('categories.trashed');
+
+// Single category landing page
+Route::get('/news/categories/{category}', [NewsController::class, 'categoryNews'])->name('news.category.news');
+
+
 
 Route::middleware('auth')->group(function () {
     // Restore trashed news
